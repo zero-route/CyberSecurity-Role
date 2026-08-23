@@ -19,6 +19,7 @@ export const teamsData: CyberTeam[] = [
       {
         id: "grc-analyst",
         title: "GRC Analyst",
+        icon: "ScrollText",
         description:
           "Mengelola tata kelola, risiko, dan kepatuhan (Governance, Risk & Compliance) terhadap standar seperti ISO 27001 dan NIST.",
         skills: ["Risk Assessment", "Policy Writing", "Audit", "Stakeholder Communication"],
@@ -28,6 +29,7 @@ export const teamsData: CyberTeam[] = [
       {
         id: "exercise-controller",
         title: "Exercise Controller",
+        icon: "Target",
         description:
           "Merancang skenario cyber range dan menjadi wasit netral dalam latihan Red vs Blue Team untuk menjaga objektivitas hasil.",
         skills: ["Scenario Design", "Facilitation", "Reporting", "Neutral Judgment"],
@@ -37,11 +39,32 @@ export const teamsData: CyberTeam[] = [
       {
         id: "compliance-manager",
         title: "Compliance Manager",
+        icon: "Scale",
         description:
           "Memastikan seluruh proses bisnis dan teknologi organisasi memenuhi regulasi eksternal seperti GDPR, HIPAA, atau UU PDP.",
         skills: ["Regulatory Mapping", "Documentation", "Cross-team Coordination"],
         certifications: ["CIPP", "CISA"],
         tags: ["Regulation", "Legal", "Policy"],
+      },
+      {
+        id: "security-program-manager",
+        title: "Security Program Manager",
+        icon: "Compass",
+        description:
+          "Mengoordinasikan seluruh program dan proyek keamanan lintas tim, mengelola linimasa, sumber daya, serta memastikan tujuan strategis keamanan tercapai.",
+        skills: ["Program Management", "Budgeting", "Cross-team Coordination"],
+        certifications: ["PMP", "CISM"],
+        tags: ["Program Management", "Strategy"],
+      },
+      {
+        id: "crisis-manager",
+        title: "Crisis Manager / Incident Commander",
+        icon: "Siren",
+        description:
+          "Memimpin pengambilan keputusan tingkat tinggi saat insiden besar terjadi: koordinasi lintas divisi dan komunikasi dengan eksekutif.",
+        skills: ["Crisis Leadership", "Decision Making", "Executive Communication"],
+        certifications: ["GCIH", "CISM"],
+        tags: ["Crisis Management", "Leadership"],
       },
     ],
   },
@@ -58,6 +81,7 @@ export const teamsData: CyberTeam[] = [
       {
         id: "penetration-tester",
         title: "Penetration Tester",
+        icon: "Bug",
         description:
           "Melakukan pengujian keamanan terstruktur pada jaringan, aplikasi, dan sistem untuk menemukan kerentanan yang dapat dieksploitasi.",
         skills: ["Exploitation", "Network Scanning", "Scripting", "Report Writing"],
@@ -67,6 +91,7 @@ export const teamsData: CyberTeam[] = [
       {
         id: "red-team-operator",
         title: "Red Team Operator",
+        icon: "Crosshair",
         description:
           "Menjalankan simulasi serangan adversary jangka panjang (APT emulation) untuk menguji kemampuan deteksi dan respons organisasi secara menyeluruh.",
         skills: ["Adversary Emulation", "C2 Frameworks", "Evasion Techniques", "OPSEC"],
@@ -76,6 +101,7 @@ export const teamsData: CyberTeam[] = [
       {
         id: "social-engineer",
         title: "Social Engineering Specialist",
+        icon: "Users",
         description:
           "Menguji kerentanan manusia melalui phishing, vishing, dan pretexting untuk mengevaluasi kesadaran keamanan karyawan.",
         skills: ["Phishing Campaigns", "Pretexting", "OSINT", "Psychology"],
@@ -85,11 +111,22 @@ export const teamsData: CyberTeam[] = [
       {
         id: "exploit-developer",
         title: "Exploit Developer",
+        icon: "Cpu",
         description:
           "Meneliti kerentanan perangkat lunak dan mengembangkan proof-of-concept exploit untuk mendukung tim ofensif.",
         skills: ["Reverse Engineering", "Fuzzing", "Assembly", "Binary Exploitation"],
         certifications: ["OSED", "GXPN"],
         tags: ["Exploit Dev", "Low-level"],
+      },
+      {
+        id: "web-app-pentester",
+        title: "Web Application Pentester",
+        icon: "Globe",
+        description:
+          "Menguji keamanan aplikasi web terhadap OWASP Top 10 dan lebih jauh: SQL injection, XSS, SSRF, IDOR, dan broken authentication.",
+        skills: ["OWASP Top 10", "Burp Suite", "API Testing"],
+        certifications: ["OSWE", "eWPT"],
+        tags: ["Web Security", "AppSec"],
       },
     ],
   },
@@ -106,6 +143,7 @@ export const teamsData: CyberTeam[] = [
       {
         id: "soc-analyst",
         title: "SOC Analyst",
+        icon: "Eye",
         description:
           "Memantau alert keamanan secara real-time melalui SIEM, melakukan triase awal, dan mengeskalasi insiden sesuai prosedur.",
         skills: ["SIEM Monitoring", "Log Analysis", "Triage", "Ticketing"],
@@ -115,6 +153,7 @@ export const teamsData: CyberTeam[] = [
       {
         id: "incident-responder",
         title: "Incident Responder",
+        icon: "ShieldAlert",
         description:
           "Menangani insiden keamanan aktif, melakukan containment, eradication, dan pemulihan sistem yang terdampak.",
         skills: ["Digital Forensics", "Malware Triage", "Containment Strategy"],
@@ -124,6 +163,7 @@ export const teamsData: CyberTeam[] = [
       {
         id: "threat-hunter",
         title: "Threat Hunter",
+        icon: "Search",
         description:
           "Mencari secara proaktif indikasi kompromi (IoC) yang belum terdeteksi oleh sistem otomatis melalui hipotesis dan analisis data.",
         skills: ["Threat Intelligence", "Behavioral Analytics", "Query Languages (KQL/SPL)"],
@@ -133,11 +173,22 @@ export const teamsData: CyberTeam[] = [
       {
         id: "detection-engineer",
         title: "Detection Engineer",
+        icon: "Radar",
         description:
           "Membangun dan menyempurnakan aturan deteksi (detection rules) serta use case SIEM/EDR agar ancaman baru dapat teridentifikasi lebih cepat.",
         skills: ["SIEM Engineering", "MITRE ATT&CK Mapping", "Automation"],
         certifications: ["Splunk Certified", "GCDA"],
         tags: ["Detection Engineering", "SIEM"],
+      },
+      {
+        id: "cloud-security-engineer",
+        title: "Cloud Security Engineer",
+        icon: "Cloud",
+        description:
+          "Mengamankan infrastruktur cloud (AWS, Azure, GCP): konfigurasi IAM, cloud-native security tools, dan deteksi ancaman di lingkungan cloud.",
+        skills: ["IAM", "Cloud-native Security", "Compliance"],
+        certifications: ["AWS Security Specialty", "CCSP"],
+        tags: ["Cloud", "Infrastructure"],
       },
     ],
   },
@@ -154,6 +205,7 @@ export const teamsData: CyberTeam[] = [
       {
         id: "purple-team-lead",
         title: "Purple Team Lead",
+        icon: "GitMerge",
         description:
           "Mengoordinasikan sesi kolaborasi antara tim ofensif dan defensif untuk memvalidasi efektivitas kontrol keamanan secara berkala.",
         skills: ["Facilitation", "MITRE ATT&CK", "Detection Validation"],
@@ -163,6 +215,7 @@ export const teamsData: CyberTeam[] = [
       {
         id: "attack-simulation-engineer",
         title: "Attack Simulation Engineer",
+        icon: "Play",
         description:
           "Merancang dan menjalankan simulasi serangan terukur (breach & attack simulation) untuk menguji efektivitas kontrol keamanan yang ada.",
         skills: ["BAS Tools", "Scripting", "Metrics & Reporting"],
@@ -172,11 +225,22 @@ export const teamsData: CyberTeam[] = [
       {
         id: "detection-validation-specialist",
         title: "Detection Validation Specialist",
+        icon: "CheckCircle2",
         description:
           "Memvalidasi apakah aturan deteksi Blue Team benar-benar memicu alert saat teknik serangan tertentu dijalankan.",
         skills: ["Log Correlation", "Purple Playbooks", "Reporting"],
         certifications: ["GCDA", "BTL2"],
         tags: ["Validation", "Playbook"],
+      },
+      {
+        id: "security-metrics-analyst",
+        title: "Security Metrics Analyst",
+        icon: "BarChart3",
+        description:
+          "Mengukur efektivitas kontrol keamanan: mean time to detect (MTTD), mean time to respond (MTTR), dan cakupan deteksi terhadap MITRE ATT&CK.",
+        skills: ["Data Analysis", "KPI Design", "Reporting"],
+        certifications: ["CDSA", "GCDA"],
+        tags: ["Metrics", "Reporting"],
       },
     ],
   },
@@ -193,6 +257,7 @@ export const teamsData: CyberTeam[] = [
       {
         id: "appsec-engineer",
         title: "Application Security Engineer",
+        icon: "Lock",
         description:
           "Melakukan code review keamanan, secure design review, dan integrasi security tooling ke dalam pipeline CI/CD.",
         skills: ["Secure Code Review", "SAST/DAST", "Threat Modeling"],
@@ -202,6 +267,7 @@ export const teamsData: CyberTeam[] = [
       {
         id: "secure-developer",
         title: "Secure Software Developer",
+        icon: "Terminal",
         description:
           "Menulis kode dengan menerapkan praktik secure coding untuk mencegah kerentanan umum seperti injection dan broken access control.",
         skills: ["Secure Coding Standards", "OWASP Top 10", "Code Refactoring"],
@@ -211,11 +277,22 @@ export const teamsData: CyberTeam[] = [
       {
         id: "devsecops-engineer",
         title: "DevSecOps Engineer",
+        icon: "Workflow",
         description:
           "Mengintegrasikan pemindaian keamanan otomatis ke dalam pipeline build & deploy tanpa menghambat kecepatan rilis tim engineering.",
         skills: ["CI/CD Security", "IaC Scanning", "Container Security"],
         certifications: ["CKS", "GCSA"],
         tags: ["DevSecOps", "Automation"],
+      },
+      {
+        id: "security-architect",
+        title: "Security Architect",
+        icon: "Building2",
+        description:
+          "Merancang arsitektur keamanan end-to-end: Zero Trust framework, network segmentation, identity architecture, dan secure-by-design system design.",
+        skills: ["Zero Trust", "System Design", "Identity Architecture"],
+        certifications: ["CISSP", "SABSA"],
+        tags: ["Architecture", "Zero Trust"],
       },
     ],
   },
@@ -232,6 +309,7 @@ export const teamsData: CyberTeam[] = [
       {
         id: "security-awareness-lead",
         title: "Security Awareness Lead",
+        icon: "GraduationCap",
         description:
           "Merancang program edukasi dan simulasi phishing internal untuk meningkatkan kesadaran keamanan karyawan non-teknis.",
         skills: ["Training Design", "Campaign Management", "Communication"],
@@ -241,6 +319,7 @@ export const teamsData: CyberTeam[] = [
       {
         id: "security-culture-consultant",
         title: "Security Culture Consultant",
+        icon: "Users",
         description:
           "Menganalisis kebiasaan organisasi dan menyusun strategi jangka panjang untuk menumbuhkan budaya 'security-first'.",
         skills: ["Behavioral Change", "Workshop Facilitation", "Metrics"],
@@ -250,11 +329,22 @@ export const teamsData: CyberTeam[] = [
       {
         id: "process-improvement-analyst",
         title: "Security Process Improvement Analyst",
+        icon: "RefreshCw",
         description:
           "Mengumpulkan feedback dari hasil latihan Red/Blue/Purple Team dan menerjemahkannya menjadi perbaikan proses keamanan berkelanjutan.",
         skills: ["Process Mapping", "Continuous Improvement", "Documentation"],
         certifications: ["Lean Six Sigma", "CISA"],
         tags: ["Process", "Improvement"],
+      },
+      {
+        id: "elearning-content-designer",
+        title: "E-Learning Content Designer",
+        icon: "Presentation",
+        description:
+          "Menyusun modul pelatihan keamanan interaktif (video, kuis, simulasi) agar materi edukasi mudah dicerna oleh karyawan di semua level.",
+        skills: ["Instructional Design", "Content Writing", "LMS Tools"],
+        certifications: ["CPTD"],
+        tags: ["Content", "E-Learning"],
       },
     ],
   },
@@ -271,6 +361,7 @@ export const teamsData: CyberTeam[] = [
       {
         id: "security-champion",
         title: "Security Champion",
+        icon: "Megaphone",
         description:
           "Developer dengan minat keamanan yang menjadi penghubung antara tim engineering dan tim keamanan dalam kegiatan sehari-hari.",
         skills: ["Secure Coding Advocacy", "Peer Mentoring", "Risk Communication"],
@@ -280,6 +371,7 @@ export const teamsData: CyberTeam[] = [
       {
         id: "offensive-trainer",
         title: "Offensive Security Trainer",
+        icon: "Flame",
         description:
           "Mengajarkan teknik dan mindset penyerang kepada tim developer melalui workshop hands-on dan capture-the-flag internal.",
         skills: ["Curriculum Design", "CTF Design", "Public Speaking"],
@@ -289,11 +381,22 @@ export const teamsData: CyberTeam[] = [
       {
         id: "vulnerability-liaison",
         title: "Vulnerability Liaison",
+        icon: "Link2",
         description:
           "Menerjemahkan hasil temuan pentest Red Team menjadi rekomendasi teknis yang actionable bagi tim pengembang.",
         skills: ["Technical Translation", "Prioritization", "Stakeholder Management"],
         certifications: ["CEH", "Security+"],
         tags: ["Liaison", "Remediation"],
+      },
+      {
+        id: "bug-bounty-manager",
+        title: "Bug Bounty Program Manager",
+        icon: "Award",
+        description:
+          "Mengelola program bug bounty: menyaring laporan dari peneliti eksternal, memverifikasi validitas temuan, dan mengoordinasikan remediasi dengan tim developer.",
+        skills: ["Triage", "Vendor Management", "Vulnerability Scoring"],
+        certifications: ["OSCP", "CEH"],
+        tags: ["Bug Bounty", "Coordination"],
       },
     ],
   },
