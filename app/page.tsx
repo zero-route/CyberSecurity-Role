@@ -46,39 +46,37 @@ export default function Home() {
 
   return (
     <div className="relative min-h-screen bg-zinc-950">
-      <div className="pointer-events-none fixed inset-0 bg-grid-fade bg-grid opacity-40" />
-
       <div className="relative">
         <Header />
 
-        {/* Hero */}
-        <section className="pb-4 pt-14 sm:pb-6 sm:pt-20">
+        {/* Hero Section */}
+        <section className="pb-4 pt-10 sm:pb-6 sm:pt-16">
           <Container>
             <div className="mx-auto max-w-3xl text-center">
               <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-800 bg-zinc-900/60 px-3 py-1 text-xs font-medium text-zinc-400">
                 Spektrum Divisi Cyber Security
               </span>
-              <h1 className="mt-5 font-display text-3xl font-semibold tracking-tight text-zinc-50 sm:text-5xl">
+              <h1 className="mt-4 font-display text-2xl font-bold tracking-tight text-zinc-50 sm:text-4xl lg:text-5xl">
                 Satu peta untuk memahami{" "}
                 <span className="text-zinc-400">setiap warna tim keamanan siber</span>
               </h1>
-              <p className="mx-auto mt-4 max-w-xl text-balance text-sm leading-relaxed text-zinc-400 sm:text-base">
+              <p className="mx-auto mt-3 max-w-xl text-balance text-xs leading-relaxed text-zinc-400 sm:text-sm">
                 Telusuri tujuh divisi — White, Red, Blue, Purple, Yellow, Green, dan Orange
-                Team — beserta profesi, keterampilan, dan sertifikasi yang relevan di
-                masing-masing bidang.
+                Team — beserta profesi, keterampilan, dan sertifikasi yang relevan.
               </p>
             </div>
 
-            <div className="mx-auto mt-10 grid max-w-2xl grid-cols-2 gap-4 sm:grid-cols-4">
+            {/* Hero Stats - Clean Bar */}
+            <div className="mx-auto mt-8 grid max-w-2xl grid-cols-2 gap-2.5 sm:grid-cols-4">
               {heroStats.map((stat) => (
                 <div
                   key={stat.label}
-                  className="rounded-xl border border-zinc-800/70 bg-zinc-900/40 px-3 py-4 text-center"
+                  className="rounded-lg border border-zinc-800/80 bg-zinc-900/30 p-3 text-center"
                 >
-                  <div className="font-display text-2xl font-semibold text-zinc-100 sm:text-3xl">
+                  <div className="font-display text-xl font-bold text-zinc-100 sm:text-2xl">
                     {stat.value}
                   </div>
-                  <div className="mt-1 text-[11px] uppercase tracking-wide text-zinc-500">
+                  <div className="mt-0.5 text-[10px] uppercase tracking-wider text-zinc-500">
                     {stat.label}
                   </div>
                 </div>
@@ -87,23 +85,22 @@ export default function Home() {
           </Container>
         </section>
 
-        {/* Overview: Apa itu Cyber Security */}
-        <section className="pt-14 sm:pt-20">
+        {/* Overview Section */}
+        <section className="pt-10 sm:pt-16">
           <Container>
-            <div className="mb-6">
-              <p className="font-mono text-xs uppercase tracking-widest text-zinc-500">
+            <div className="mb-5">
+              <p className="font-mono text-[11px] uppercase tracking-widest text-zinc-500">
                 // Overview
               </p>
-              <h2 className="mt-2 font-display text-2xl font-semibold text-zinc-100 sm:text-3xl">
+              <h2 className="mt-1 font-display text-xl font-bold text-zinc-100 sm:text-2xl">
                 Apa itu Cyber Security?
               </h2>
-              <p className="mt-2 max-w-xl text-sm text-zinc-400 sm:text-base">
-                Bidang multidisiplin yang menjaga aset digital dari ancaman yang terus
-                berkembang.
+              <p className="mt-1 max-w-xl text-xs text-zinc-400 sm:text-sm">
+                Bidang multidisiplin yang menjaga aset digital dari ancaman yang terus berkembang.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
               {overviewItems.map((item) => {
                 const Icon =
                   (LucideIcons[item.icon as keyof typeof LucideIcons] as LucideIcon) ??
@@ -111,15 +108,15 @@ export default function Home() {
                 return (
                   <div
                     key={item.title}
-                    className="rounded-xl border border-zinc-800/70 bg-zinc-900/40 p-5"
+                    className="rounded-lg border border-zinc-800/80 bg-zinc-900/30 p-4"
                   >
-                    <div className="flex items-center gap-2.5">
-                      <Icon className="h-4 w-4 text-zinc-400" strokeWidth={2} />
+                    <div className="flex items-center gap-2">
+                      <Icon className="h-4 w-4 text-zinc-400" strokeWidth={1.75} />
                       <h3 className="font-display text-sm font-semibold text-zinc-100">
                         {item.title}
                       </h3>
                     </div>
-                    <p className="mt-2 text-sm leading-relaxed text-zinc-400">
+                    <p className="mt-1.5 text-xs leading-relaxed text-zinc-400">
                       {item.description}
                     </p>
                   </div>
@@ -129,24 +126,24 @@ export default function Home() {
           </Container>
         </section>
 
-        {/* Search + quick jump nav */}
-        <section id="spectrum" className="pt-14 sm:pt-20">
-          <Container className="space-y-5">
+        {/* Search Bar & Filter */}
+        <section id="spectrum" className="pt-10 sm:pt-14">
+          <Container className="space-y-4">
             <SearchBar value={query} onChange={setQuery} />
             {!isSearching && <TeamSelector />}
           </Container>
         </section>
 
-        {/* Search results (global, across every team) */}
+        {/* Search Results */}
         {isSearching && (
-          <section className="pt-8 sm:pt-10">
+          <section className="pt-6 sm:pt-8">
             <Container>
-              <p className="mb-5 text-sm text-zinc-500">
+              <p className="mb-4 text-xs text-zinc-500">
                 {globalMatches?.length ?? 0} hasil untuk{" "}
                 <span className="text-zinc-300">&ldquo;{query}&rdquo;</span>
               </p>
               {globalMatches && globalMatches.length > 0 ? (
-                <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
+                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
                   {globalMatches.map(({ role, team: matchTeam }) => (
                     <RoleCard key={role.id} role={role} teamColor={matchTeam.color} />
                   ))}
@@ -158,24 +155,23 @@ export default function Home() {
           </section>
         )}
 
-        {/* Struktur Tim: every team stacked as its own tinted panel */}
+        {/* Struktur Tim Section - Hapus Panel Raksasa & Box-in-Box */}
         {!isSearching && (
-          <section id="roles" className="pb-20 pt-14 sm:pb-24 sm:pt-20">
+          <section id="roles" className="pb-16 pt-10 sm:pb-20 sm:pt-14">
             <Container>
               <div className="mb-8">
-                <p className="font-mono text-xs uppercase tracking-widest text-zinc-500">
+                <p className="font-mono text-[11px] uppercase tracking-widest text-zinc-500">
                   // Struktur Tim
                 </p>
-                <h2 className="mt-2 font-display text-2xl font-semibold text-zinc-100 sm:text-3xl">
+                <h2 className="mt-1 font-display text-xl font-bold text-zinc-100 sm:text-2xl">
                   Tim &amp; Divisi Cyber Security
                 </h2>
-                <p className="mt-2 max-w-xl text-sm text-zinc-400 sm:text-base">
-                  Setiap tim memiliki peran unik — dari menyerang, mempertahankan, mengelola,
-                  hingga menumbuhkan budaya keamanan.
+                <p className="mt-1 max-w-xl text-xs text-zinc-400 sm:text-sm">
+                  Setiap tim memiliki peran unik — dari menyerang, mempertahankan, hingga mengelola budaya keamanan.
                 </p>
               </div>
 
-              <div className="space-y-8">
+              <div className="space-y-10">
                 {teamsData.map((team) => {
                   const accent = getTeamAccent(team.color);
                   const Icon =
@@ -183,42 +179,33 @@ export default function Home() {
                     LucideIcons.Shield;
 
                   return (
-                    <div
-                      key={team.id}
-                      id={`team-${team.id}`}
-                      className={cn(
-                        "scroll-mt-24 rounded-2xl border p-6 sm:p-8",
-                        accent.border,
-                        accent.bg
-                      )}
-                    >
-                      <div className="flex items-start gap-4">
-                        <div
-                          className={cn(
-                            "flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border bg-zinc-950",
-                            accent.border
-                          )}
-                        >
-                          <Icon className={cn("h-5 w-5", accent.text)} strokeWidth={2} />
-                        </div>
-                        <div>
-                          <div className="flex flex-wrap items-baseline gap-2">
-                            <h3 className="font-display text-xl font-semibold text-zinc-100">
-                              {team.name}
-                            </h3>
+                    <div key={team.id} id={`team-${team.id}`} className="scroll-mt-20">
+                      {/* Sub-Header Tim Modern Minimalis */}
+                      <div className="mb-4 flex items-center justify-between border-b border-zinc-800/80 pb-3">
+                        <div className="flex items-center gap-2.5">
+                          <div
+                            className={cn(
+                              "flex h-8 w-8 items-center justify-center rounded-md border bg-zinc-900/60",
+                              accent.border
+                            )}
+                          >
+                            <Icon className={cn("h-4 w-4", accent.text)} strokeWidth={2} />
                           </div>
-                          <p className={cn("mt-0.5 font-mono text-xs uppercase tracking-wide", accent.text)}>
-                            // {team.tagline}
-                          </p>
-                          <p className="mt-2 max-w-2xl text-sm leading-relaxed text-zinc-400">
-                            {team.mission}
-                          </p>
+                          <div>
+                            <div className="flex items-center gap-2">
+                              <h3 className="font-display text-base font-bold text-zinc-100">
+                                {team.name}
+                              </h3>
+                              <span className={cn("font-mono text-[10px] uppercase tracking-wider", accent.text)}>
+                                // {team.tagline}
+                              </span>
+                            </div>
+                          </div>
                         </div>
                       </div>
 
-                      <div className="my-6 h-px w-full bg-zinc-800/70" />
-
-                      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                      {/* Responsive Grid Card */}
+                      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
                         {team.roles.map((role) => (
                           <RoleCard key={role.id} role={role} teamColor={team.color} />
                         ))}
@@ -239,13 +226,13 @@ export default function Home() {
 
 function EmptyState({ query }: { query: string }) {
   return (
-    <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-zinc-800 py-16 text-center">
-      <SearchX className="h-8 w-8 text-zinc-600" />
-      <p className="mt-3 text-sm text-zinc-400">
+    <div className="flex flex-col items-center justify-center rounded-lg border border-dashed border-zinc-800 py-12 text-center">
+      <SearchX className="h-6 w-6 text-zinc-600" />
+      <p className="mt-2 text-xs text-zinc-400">
         Tidak ada profesi yang cocok dengan{" "}
         <span className="text-zinc-200">&ldquo;{query}&rdquo;</span>.
       </p>
-      <p className="mt-1 text-xs text-zinc-600">Coba kata kunci lain, misalnya "forensik" atau "OSCP".</p>
+      <p className="mt-1 text-[11px] text-zinc-600">Coba kata kunci lain, seperti "forensik" atau "OSCP".</p>
     </div>
   );
 }
