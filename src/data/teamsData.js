@@ -1,413 +1,408 @@
-import type { CyberTeam } from "@/types/team";
-
 /**
- * Master dataset for the Cyber Security Spectrum.
- * Kept separate from UI components so content can be edited
- * without touching any rendering logic.
+ * @type {import('../types/team').Team[]}
  */
-export const teamsData: CyberTeam[] = [
-  {
-    id: "white",
-    name: "White Team",
-    tagline: "Wasit, Kebijakan & Tata Kelola",
-    mission:
-      "White Team berperan sebagai pengawas netral yang menyusun aturan main, mengevaluasi latihan Red vs Blue, dan memastikan seluruh aktivitas keamanan berjalan sesuai kebijakan, kepatuhan, dan etika organisasi.",
-    icon: "ShieldCheck",
-    color: "zinc",
-    hex: "#e4e4e7",
-    roles: [
-      {
-        id: "grc-analyst",
-        title: "GRC Analyst",
-        icon: "ScrollText",
-        description:
-          "Mengelola tata kelola, risiko, dan kepatuhan (Governance, Risk & Compliance) terhadap standar seperti ISO 27001 dan NIST.",
-        skills: ["Risk Assessment", "Policy Writing", "Audit", "Stakeholder Communication"],
-        certifications: ["CRISC", "ISO 27001 Lead Implementer", "CGRC"],
-        tags: ["Governance", "Compliance", "Risk"],
-      },
-      {
-        id: "exercise-controller",
-        title: "Exercise Controller",
-        icon: "Target",
-        description:
-          "Merancang skenario cyber range dan menjadi wasit netral dalam latihan Red vs Blue Team untuk menjaga objektivitas hasil.",
-        skills: ["Scenario Design", "Facilitation", "Reporting", "Neutral Judgment"],
-        certifications: ["CompTIA Security+", "CISSP"],
-        tags: ["Exercise", "Facilitation"],
-      },
-      {
-        id: "compliance-manager",
-        title: "Compliance Manager",
-        icon: "Scale",
-        description:
-          "Memastikan seluruh proses bisnis dan teknologi organisasi memenuhi regulasi eksternal seperti GDPR, HIPAA, atau UU PDP.",
-        skills: ["Regulatory Mapping", "Documentation", "Cross-team Coordination"],
-        certifications: ["CIPP", "CISA"],
-        tags: ["Regulation", "Legal", "Policy"],
-      },
-      {
-        id: "security-program-manager",
-        title: "Security Program Manager",
-        icon: "Compass",
-        description:
-          "Mengoordinasikan seluruh program dan proyek keamanan lintas tim, mengelola linimasa, sumber daya, serta memastikan tujuan strategis keamanan tercapai.",
-        skills: ["Program Management", "Budgeting", "Cross-team Coordination"],
-        certifications: ["PMP", "CISM"],
-        tags: ["Program Management", "Strategy"],
-      },
-      {
-        id: "crisis-manager",
-        title: "Crisis Manager / Incident Commander",
-        icon: "Siren",
-        description:
-          "Memimpin pengambilan keputusan tingkat tinggi saat insiden besar terjadi: koordinasi lintas divisi dan komunikasi dengan eksekutif.",
-        skills: ["Crisis Leadership", "Decision Making", "Executive Communication"],
-        certifications: ["GCIH", "CISM"],
-        tags: ["Crisis Management", "Leadership"],
-      },
-    ],
-  },
+export const teamsData = [
   {
     id: "red",
     name: "Red Team",
-    tagline: "Simulasi Serangan & Ofensif",
-    mission:
-      "Red Team berpikir dan bertindak seperti penyerang sungguhan untuk menemukan celah keamanan sebelum pihak jahat menemukannya, melalui penetration testing dan simulasi adversary yang realistis.",
-    icon: "Swords",
-    color: "red",
-    hex: "#ef4444",
+    color: "#EF4444",
+    icon: "sword",
+    mission: "Menyerang sistem secara terkendali untuk menemukan celah sebelum peretas asli menemukannya.",
+    description:
+      "Red Team berperan sebagai 'penyerang bayangan'. Mereka mensimulasikan serangan nyata (penetration testing, red teaming, social engineering) untuk menguji seberapa kuat pertahanan organisasi.",
     roles: [
       {
-        id: "penetration-tester",
+        slug: "penetration-tester",
         title: "Penetration Tester",
-        icon: "Bug",
-        description:
-          "Melakukan pengujian keamanan terstruktur pada jaringan, aplikasi, dan sistem untuk menemukan kerentanan yang dapat dieksploitasi.",
-        skills: ["Exploitation", "Network Scanning", "Scripting", "Report Writing"],
+        shortDescription: "Menguji celah keamanan sistem, jaringan, dan aplikasi secara aktif.",
+        longDescription:
+          "Penetration Tester melakukan simulasi serangan terkontrol terhadap sistem, jaringan, atau aplikasi untuk menemukan kerentanan sebelum dieksploitasi pihak tidak bertanggung jawab. Hasil temuan didokumentasikan dalam laporan teknis dan rekomendasi perbaikan.",
+        domain: "network",
+        level: "advanced",
+        skills: ["Networking", "Linux/Windows internals", "Scripting (Python/Bash)", "Web exploitation"],
+        tools: ["Metasploit", "Burp Suite", "Nmap", "Cobalt Strike"],
         certifications: ["OSCP", "CEH", "eJPT"],
-        tags: ["Offensive", "Pentest"],
+        responsibilities: [
+          "Melakukan vulnerability assessment dan exploitation",
+          "Menulis laporan teknis hasil pengujian",
+          "Memberi rekomendasi mitigasi ke tim Blue Team",
+        ],
+        careerPath: ["Junior Pentester", "Pentester", "Senior Pentester", "Red Team Lead"],
+        relatedRoles: ["red-teamer", "social-engineer"],
       },
       {
-        id: "red-team-operator",
+        slug: "red-teamer",
         title: "Red Team Operator",
-        icon: "Crosshair",
-        description:
-          "Menjalankan simulasi serangan adversary jangka panjang (APT emulation) untuk menguji kemampuan deteksi dan respons organisasi secara menyeluruh.",
-        skills: ["Adversary Emulation", "C2 Frameworks", "Evasion Techniques", "OPSEC"],
-        certifications: ["OSCE", "CRTO", "GXPN"],
-        tags: ["Adversary Simulation", "APT"],
+        shortDescription: "Mensimulasikan serangan APT (Advanced Persistent Threat) secara menyeluruh.",
+        longDescription:
+          "Berbeda dari pentester biasa, Red Team Operator berfokus pada simulasi serangan jangka panjang yang menyerupai taktik kelompok APT nyata — termasuk evasion, persistence, dan lateral movement.",
+        domain: "network",
+        level: "advanced",
+        skills: ["Adversary emulation", "Malware development dasar", "OPSEC", "Active Directory attack"],
+        tools: ["Cobalt Strike", "Mythic C2", "BloodHound"],
+        certifications: ["OSEP", "CRTO"],
+        responsibilities: [
+          "Merancang skenario serangan realistis",
+          "Menguji deteksi tim Blue Team (purple teaming)",
+          "Menjaga OPSEC selama operasi",
+        ],
+        careerPath: ["Red Teamer", "Senior Red Teamer", "Red Team Lead"],
+        relatedRoles: ["penetration-tester"],
       },
       {
-        id: "social-engineer",
+        slug: "social-engineer",
         title: "Social Engineering Specialist",
-        icon: "Users",
-        description:
-          "Menguji kerentanan manusia melalui phishing, vishing, dan pretexting untuk mengevaluasi kesadaran keamanan karyawan.",
-        skills: ["Phishing Campaigns", "Pretexting", "OSINT", "Psychology"],
-        certifications: ["SEC-542", "CEH"],
-        tags: ["Human Factor", "Phishing"],
-      },
-      {
-        id: "exploit-developer",
-        title: "Exploit Developer",
-        icon: "Cpu",
-        description:
-          "Meneliti kerentanan perangkat lunak dan mengembangkan proof-of-concept exploit untuk mendukung tim ofensif.",
-        skills: ["Reverse Engineering", "Fuzzing", "Assembly", "Binary Exploitation"],
-        certifications: ["OSED", "GXPN"],
-        tags: ["Exploit Dev", "Low-level"],
-      },
-      {
-        id: "web-app-pentester",
-        title: "Web Application Pentester",
-        icon: "Globe",
-        description:
-          "Menguji keamanan aplikasi web terhadap OWASP Top 10 dan lebih jauh: SQL injection, XSS, SSRF, IDOR, dan broken authentication.",
-        skills: ["OWASP Top 10", "Burp Suite", "API Testing"],
-        certifications: ["OSWE", "eWPT"],
-        tags: ["Web Security", "AppSec"],
+        shortDescription: "Menguji kerentanan manusia lewat phishing dan manipulasi sosial.",
+        longDescription:
+          "Fokus pada sisi human factor — merancang kampanye phishing, vishing, atau physical intrusion test untuk mengukur kesadaran keamanan karyawan.",
+        domain: "awareness",
+        level: "intermediate",
+        skills: ["Psikologi sosial", "OSINT", "Pembuatan konten phishing"],
+        tools: ["GoPhish", "SET (Social Engineer Toolkit)"],
+        certifications: ["SECTF", "CEH"],
+        responsibilities: [
+          "Merancang skenario phishing terkontrol",
+          "Melaporkan tingkat kerentanan karyawan",
+          "Berkoordinasi dengan tim awareness untuk training lanjutan",
+        ],
+        careerPath: ["Junior Specialist", "Specialist", "Senior Specialist"],
+        relatedRoles: ["penetration-tester"],
       },
     ],
   },
   {
     id: "blue",
     name: "Blue Team",
-    tagline: "Pertahanan, Deteksi & Respons",
-    mission:
-      "Blue Team bertanggung jawab menjaga garis pertahanan sehari-hari: memantau anomali, mendeteksi intrusi, dan merespons insiden secepat mungkin untuk meminimalkan dampak serangan.",
-    icon: "ShieldHalf",
-    color: "blue",
-    hex: "#3b82f6",
+    color: "#3B82F6",
+    icon: "shield",
+    mission: "Mempertahankan sistem dari serangan secara real-time dan berkelanjutan.",
+    description:
+      "Blue Team bertanggung jawab memantau, mendeteksi, dan merespons ancaman. Mereka adalah garis pertahanan utama organisasi sehari-hari.",
     roles: [
       {
-        id: "soc-analyst",
+        slug: "soc-analyst",
         title: "SOC Analyst",
-        icon: "Eye",
-        description:
-          "Memantau alert keamanan secara real-time melalui SIEM, melakukan triase awal, dan mengeskalasi insiden sesuai prosedur.",
-        skills: ["SIEM Monitoring", "Log Analysis", "Triage", "Ticketing"],
-        certifications: ["CompTIA Security+", "Blue Team Level 1 (BTL1)"],
-        tags: ["Monitoring", "SOC"],
+        shortDescription: "Memantau alert keamanan dan menganalisis potensi insiden 24/7.",
+        longDescription:
+          "SOC (Security Operations Center) Analyst bertugas memonitor traffic dan log dari berbagai sistem, mengidentifikasi aktivitas mencurigakan, serta melakukan triase awal sebelum eskalasi ke tim Incident Response.",
+        domain: "network",
+        level: "beginner",
+        skills: ["Log analysis", "SIEM", "Networking dasar", "Threat detection"],
+        tools: ["Splunk", "QRadar", "Wireshark"],
+        certifications: ["Security+", "CySA+"],
+        responsibilities: [
+          "Memantau dashboard SIEM secara berkala",
+          "Melakukan triase alert",
+          "Eskalasi insiden ke tim terkait",
+        ],
+        careerPath: ["SOC Analyst L1", "SOC Analyst L2", "SOC Lead", "SOC Manager"],
+        relatedRoles: ["threat-hunter", "incident-responder"],
       },
       {
-        id: "incident-responder",
-        title: "Incident Responder",
-        icon: "ShieldAlert",
-        description:
-          "Menangani insiden keamanan aktif, melakukan containment, eradication, dan pemulihan sistem yang terdampak.",
-        skills: ["Digital Forensics", "Malware Triage", "Containment Strategy"],
-        certifications: ["GCIH", "GCFA"],
-        tags: ["Incident Response", "Forensics"],
-      },
-      {
-        id: "threat-hunter",
+        slug: "threat-hunter",
         title: "Threat Hunter",
-        icon: "Search",
-        description:
-          "Mencari secara proaktif indikasi kompromi (IoC) yang belum terdeteksi oleh sistem otomatis melalui hipotesis dan analisis data.",
-        skills: ["Threat Intelligence", "Behavioral Analytics", "Query Languages (KQL/SPL)"],
-        certifications: ["GCTI", "CTHP"],
-        tags: ["Threat Hunting", "Detection"],
+        shortDescription: "Mencari ancaman tersembunyi yang lolos dari sistem deteksi otomatis.",
+        longDescription:
+          "Threat Hunter secara proaktif mencari indikasi kompromi (IOC) di dalam jaringan yang tidak terdeteksi oleh alert otomatis, menggunakan hipotesis berbasis threat intelligence.",
+        domain: "threat-intel",
+        level: "advanced",
+        skills: ["Threat intelligence", "Data analysis", "Malware behavior analysis"],
+        tools: ["Splunk", "EDR platforms", "YARA"],
+        certifications: ["GCTI", "GCFA"],
+        responsibilities: [
+          "Membangun hipotesis threat hunting",
+          "Menganalisis pola anomali",
+          "Mendokumentasikan temuan untuk tim SOC",
+        ],
+        careerPath: ["SOC Analyst", "Threat Hunter", "Senior Threat Hunter"],
+        relatedRoles: ["soc-analyst", "threat-intel-analyst"],
       },
       {
-        id: "detection-engineer",
-        title: "Detection Engineer",
-        icon: "Radar",
-        description:
-          "Membangun dan menyempurnakan aturan deteksi (detection rules) serta use case SIEM/EDR agar ancaman baru dapat teridentifikasi lebih cepat.",
-        skills: ["SIEM Engineering", "MITRE ATT&CK Mapping", "Automation"],
-        certifications: ["Splunk Certified", "GCDA"],
-        tags: ["Detection Engineering", "SIEM"],
-      },
-      {
-        id: "cloud-security-engineer",
-        title: "Cloud Security Engineer",
-        icon: "Cloud",
-        description:
-          "Mengamankan infrastruktur cloud (AWS, Azure, GCP): konfigurasi IAM, cloud-native security tools, dan deteksi ancaman di lingkungan cloud.",
-        skills: ["IAM", "Cloud-native Security", "Compliance"],
-        certifications: ["AWS Security Specialty", "CCSP"],
-        tags: ["Cloud", "Infrastructure"],
-      },
-    ],
-  },
-  {
-    id: "purple",
-    name: "Purple Team",
-    tagline: "Kolaborasi Ofensif & Defensif",
-    mission:
-      "Purple Team menjembatani Red dan Blue Team, memastikan temuan serangan langsung diterjemahkan menjadi peningkatan deteksi, sehingga siklus pembelajaran keamanan berjalan berkelanjutan.",
-    icon: "Shuffle",
-    color: "purple",
-    hex: "#a855f7",
-    roles: [
-      {
-        id: "purple-team-lead",
-        title: "Purple Team Lead",
-        icon: "GitMerge",
-        description:
-          "Mengoordinasikan sesi kolaborasi antara tim ofensif dan defensif untuk memvalidasi efektivitas kontrol keamanan secara berkala.",
-        skills: ["Facilitation", "MITRE ATT&CK", "Detection Validation"],
-        certifications: ["CRTO", "GCDA"],
-        tags: ["Coordination", "Validation"],
-      },
-      {
-        id: "attack-simulation-engineer",
-        title: "Attack Simulation Engineer",
-        icon: "Play",
-        description:
-          "Merancang dan menjalankan simulasi serangan terukur (breach & attack simulation) untuk menguji efektivitas kontrol keamanan yang ada.",
-        skills: ["BAS Tools", "Scripting", "Metrics & Reporting"],
-        certifications: ["CRTO", "OSCP"],
-        tags: ["Simulation", "Testing"],
-      },
-      {
-        id: "detection-validation-specialist",
-        title: "Detection Validation Specialist",
-        icon: "CheckCircle2",
-        description:
-          "Memvalidasi apakah aturan deteksi Blue Team benar-benar memicu alert saat teknik serangan tertentu dijalankan.",
-        skills: ["Log Correlation", "Purple Playbooks", "Reporting"],
-        certifications: ["GCDA", "BTL2"],
-        tags: ["Validation", "Playbook"],
-      },
-      {
-        id: "security-metrics-analyst",
-        title: "Security Metrics Analyst",
-        icon: "BarChart3",
-        description:
-          "Mengukur efektivitas kontrol keamanan: mean time to detect (MTTD), mean time to respond (MTTR), dan cakupan deteksi terhadap MITRE ATT&CK.",
-        skills: ["Data Analysis", "KPI Design", "Reporting"],
-        certifications: ["CDSA", "GCDA"],
-        tags: ["Metrics", "Reporting"],
-      },
-    ],
-  },
-  {
-    id: "yellow",
-    name: "Yellow Team",
-    tagline: "Keamanan dalam Pengembangan Perangkat Lunak",
-    mission:
-      "Yellow Team menanamkan prinsip keamanan langsung ke dalam siklus pengembangan perangkat lunak (SDLC), memastikan aplikasi aman sejak tahap desain hingga produksi.",
-    icon: "Code2",
-    color: "yellow",
-    hex: "#eab308",
-    roles: [
-      {
-        id: "appsec-engineer",
-        title: "Application Security Engineer",
-        icon: "Lock",
-        description:
-          "Melakukan code review keamanan, secure design review, dan integrasi security tooling ke dalam pipeline CI/CD.",
-        skills: ["Secure Code Review", "SAST/DAST", "Threat Modeling"],
-        certifications: ["GWEB", "CSSLP"],
-        tags: ["AppSec", "DevSecOps"],
-      },
-      {
-        id: "secure-developer",
-        title: "Secure Software Developer",
-        icon: "Terminal",
-        description:
-          "Menulis kode dengan menerapkan praktik secure coding untuk mencegah kerentanan umum seperti injection dan broken access control.",
-        skills: ["Secure Coding Standards", "OWASP Top 10", "Code Refactoring"],
-        certifications: ["CSSLP"],
-        tags: ["Development", "Secure Coding"],
-      },
-      {
-        id: "devsecops-engineer",
-        title: "DevSecOps Engineer",
-        icon: "Workflow",
-        description:
-          "Mengintegrasikan pemindaian keamanan otomatis ke dalam pipeline build & deploy tanpa menghambat kecepatan rilis tim engineering.",
-        skills: ["CI/CD Security", "IaC Scanning", "Container Security"],
-        certifications: ["CKS", "GCSA"],
-        tags: ["DevSecOps", "Automation"],
-      },
-      {
-        id: "security-architect",
-        title: "Security Architect",
-        icon: "Building2",
-        description:
-          "Merancang arsitektur keamanan end-to-end: Zero Trust framework, network segmentation, identity architecture, dan secure-by-design system design.",
-        skills: ["Zero Trust", "System Design", "Identity Architecture"],
-        certifications: ["CISSP", "SABSA"],
-        tags: ["Architecture", "Zero Trust"],
+        slug: "incident-responder",
+        title: "Incident Responder",
+        shortDescription: "Menangani dan memulihkan sistem saat insiden keamanan terjadi.",
+        longDescription:
+          "Bertanggung jawab menangani insiden aktif — dari containment, eradication, hingga recovery — serta menyusun laporan post-incident untuk mencegah kejadian berulang.",
+        domain: "incident-response",
+        level: "intermediate",
+        skills: ["Digital forensics", "Malware analysis", "Crisis management"],
+        tools: ["Volatility", "FTK", "EnCase"],
+        certifications: ["GCIH", "GCFA"],
+        responsibilities: [
+          "Melakukan containment saat insiden terjadi",
+          "Investigasi root cause",
+          "Menyusun laporan post-mortem",
+        ],
+        careerPath: ["Incident Responder", "Senior IR", "IR Team Lead"],
+        relatedRoles: ["soc-analyst", "forensic-analyst"],
       },
     ],
   },
   {
     id: "green",
     name: "Green Team",
-    tagline: "Edukasi & Peningkatan Kesadaran Keamanan",
-    mission:
-      "Green Team berfokus pada penguatan proses jangka panjang: pelatihan, kesadaran keamanan, dan penerapan feedback dari tim lain agar budaya keamanan tumbuh secara organik di seluruh organisasi.",
-    icon: "Sprout",
-    color: "green",
-    hex: "#22c55e",
+    color: "#22C55E",
+    icon: "sprout",
+    mission: "Menjembatani hasil temuan Red & Blue Team ke dalam perbaikan proses dan edukasi jangka panjang.",
+    description:
+      "Green Team berfokus pada peningkatan berkelanjutan — mengubah temuan keamanan menjadi perbaikan proses development dan pelatihan tim.",
     roles: [
       {
-        id: "security-awareness-lead",
-        title: "Security Awareness Lead",
-        icon: "GraduationCap",
-        description:
-          "Merancang program edukasi dan simulasi phishing internal untuk meningkatkan kesadaran keamanan karyawan non-teknis.",
-        skills: ["Training Design", "Campaign Management", "Communication"],
-        certifications: ["SANS SSAP", "CISM"],
-        tags: ["Awareness", "Training"],
+        slug: "security-engineer",
+        title: "Security Engineer",
+        shortDescription: "Membangun dan memperbaiki sistem berdasarkan temuan keamanan.",
+        longDescription:
+          "Mengimplementasikan perbaikan teknis berdasarkan hasil audit dan pentest, termasuk hardening sistem dan otomatisasi proses keamanan dalam pipeline development.",
+        domain: "application",
+        level: "intermediate",
+        skills: ["Secure coding", "CI/CD security", "Infrastructure as Code"],
+        tools: ["Terraform", "GitHub Actions", "SonarQube"],
+        certifications: ["Security+", "AWS Security Specialty"],
+        responsibilities: [
+          "Mengimplementasikan rekomendasi hasil pentest",
+          "Membangun automation security testing di pipeline",
+          "Kolaborasi dengan tim development",
+        ],
+        careerPath: ["Security Engineer", "Senior Security Engineer", "Security Architect"],
+        relatedRoles: ["appsec-engineer", "devsecops-engineer"],
       },
       {
-        id: "security-culture-consultant",
-        title: "Security Culture Consultant",
-        icon: "Users",
-        description:
-          "Menganalisis kebiasaan organisasi dan menyusun strategi jangka panjang untuk menumbuhkan budaya 'security-first'.",
-        skills: ["Behavioral Change", "Workshop Facilitation", "Metrics"],
-        certifications: ["CISM", "CISSP"],
-        tags: ["Culture", "Strategy"],
+        slug: "security-trainer",
+        title: "Security Awareness Trainer",
+        shortDescription: "Merancang materi edukasi keamanan untuk seluruh karyawan.",
+        longDescription:
+          "Bertanggung jawab menyusun dan menyampaikan program pelatihan kesadaran keamanan berdasarkan tren ancaman terbaru dan hasil temuan Red Team.",
+        domain: "awareness",
+        level: "beginner",
+        skills: ["Public speaking", "Content design", "Adult learning"],
+        tools: ["KnowBe4", "Google Workspace"],
+        certifications: ["Security+"],
+        responsibilities: [
+          "Merancang kurikulum pelatihan keamanan",
+          "Mengevaluasi efektivitas program awareness",
+          "Berkoordinasi dengan Red Team untuk skenario nyata",
+        ],
+        careerPath: ["Trainer", "Senior Trainer", "Awareness Program Lead"],
+        relatedRoles: ["social-engineer"],
+      },
+    ],
+  },
+  {
+    id: "purple",
+    name: "Purple Team",
+    color: "#A855F7",
+    icon: "merge",
+    mission: "Menyatukan strategi Red dan Blue Team agar deteksi dan respons semakin efektif.",
+    description:
+      "Purple Team bukan tim tetap di banyak organisasi, melainkan fungsi kolaboratif — memastikan temuan Red Team langsung memperkuat kemampuan deteksi Blue Team.",
+    roles: [
+      {
+        slug: "purple-team-lead",
+        title: "Purple Team Lead",
+        shortDescription: "Mengoordinasikan latihan simulasi bersama Red dan Blue Team.",
+        longDescription:
+          "Merancang skenario latihan bersama, memastikan setiap teknik serangan dari Red Team diuji terhadap kemampuan deteksi Blue Team, lalu menutup gap yang ditemukan.",
+        domain: "network",
+        level: "advanced",
+        skills: ["MITRE ATT&CK", "Detection engineering", "Facilitation"],
+        tools: ["MITRE ATT&CK Navigator", "SIEM platforms"],
+        certifications: ["GCFA", "CRTO"],
+        responsibilities: [
+          "Merancang skenario purple team exercise",
+          "Memetakan teknik serangan ke MITRE ATT&CK",
+          "Mengukur efektivitas deteksi setelah simulasi",
+        ],
+        careerPath: ["Blue/Red Analyst", "Purple Team Member", "Purple Team Lead"],
+        relatedRoles: ["threat-hunter", "red-teamer"],
       },
       {
-        id: "process-improvement-analyst",
-        title: "Security Process Improvement Analyst",
-        icon: "RefreshCw",
-        description:
-          "Mengumpulkan feedback dari hasil latihan Red/Blue/Purple Team dan menerjemahkannya menjadi perbaikan proses keamanan berkelanjutan.",
-        skills: ["Process Mapping", "Continuous Improvement", "Documentation"],
-        certifications: ["Lean Six Sigma", "CISA"],
-        tags: ["Process", "Improvement"],
-      },
-      {
-        id: "elearning-content-designer",
-        title: "E-Learning Content Designer",
-        icon: "Presentation",
-        description:
-          "Menyusun modul pelatihan keamanan interaktif (video, kuis, simulasi) agar materi edukasi mudah dicerna oleh karyawan di semua level.",
-        skills: ["Instructional Design", "Content Writing", "LMS Tools"],
-        certifications: ["CPTD"],
-        tags: ["Content", "E-Learning"],
+        slug: "detection-engineer",
+        title: "Detection Engineer",
+        shortDescription: "Membangun rule dan use-case deteksi berbasis teknik serangan nyata.",
+        longDescription:
+          "Menerjemahkan taktik serangan dari hasil purple team exercise menjadi rule deteksi konkret di SIEM/EDR, sekaligus melakukan tuning agar mengurangi false positive.",
+        domain: "network",
+        level: "intermediate",
+        skills: ["SIEM engineering", "Scripting", "Log correlation"],
+        tools: ["Splunk SPL", "Sigma rules", "Elastic"],
+        certifications: ["GCDA"],
+        responsibilities: [
+          "Membuat dan menguji detection rule",
+          "Melakukan tuning untuk mengurangi false positive",
+          "Dokumentasi use-case deteksi",
+        ],
+        careerPath: ["SOC Analyst", "Detection Engineer", "Senior Detection Engineer"],
+        relatedRoles: ["soc-analyst", "purple-team-lead"],
       },
     ],
   },
   {
     id: "orange",
     name: "Orange Team",
-    tagline: "Jembatan Antara Developer & Attacker",
-    mission:
-      "Orange Team menjadi penghubung antara Red Team dan Yellow Team, membawa wawasan teknik serangan langsung ke tim pengembang agar developer memahami cara berpikir penyerang.",
-    icon: "Radar",
-    color: "orange",
-    hex: "#f97316",
+    color: "#F97316",
+    icon: "megaphone",
+    mission: "Menjembatani Red Team dengan tim developer/engineer lewat edukasi berbasis temuan langsung.",
+    description:
+      "Orange Team relatif baru — fokusnya membawa hasil Red Team ke developer secara langsung agar security awareness tertanam sejak proses coding.",
     roles: [
       {
-        id: "security-champion",
-        title: "Security Champion",
-        icon: "Megaphone",
-        description:
-          "Developer dengan minat keamanan yang menjadi penghubung antara tim engineering dan tim keamanan dalam kegiatan sehari-hari.",
-        skills: ["Secure Coding Advocacy", "Peer Mentoring", "Risk Communication"],
-        certifications: ["CSSLP", "Security+"],
-        tags: ["Advocacy", "Bridge Role"],
+        slug: "appsec-liaison",
+        title: "Application Security Liaison",
+        shortDescription: "Menjembatani temuan keamanan aplikasi ke tim developer.",
+        longDescription:
+          "Menerjemahkan hasil pentest aplikasi menjadi bahasa yang mudah dipahami developer, sekaligus memfasilitasi sesi edukasi secure coding langsung ke tim engineering.",
+        domain: "application",
+        level: "intermediate",
+        skills: ["Secure coding", "Communication", "Code review"],
+        tools: ["GitHub", "SonarQube", "OWASP ASVS"],
+        certifications: ["Security+", "CSSLP"],
+        responsibilities: [
+          "Fasilitasi sesi secure coding untuk developer",
+          "Menerjemahkan hasil pentest ke actionable item",
+          "Membangun budaya security-first di tim engineering",
+        ],
+        careerPath: ["Developer", "AppSec Liaison", "AppSec Lead"],
+        relatedRoles: ["appsec-engineer", "security-trainer"],
+      },
+    ],
+  },
+  {
+    id: "yellow",
+    name: "Yellow Team",
+    color: "#EAB308",
+    icon: "code",
+    mission: "Membangun software dan sistem dengan prinsip keamanan sejak tahap desain (security by design).",
+    description:
+      "Yellow Team adalah representasi builder — developer, arsitek, dan engineer yang menanamkan keamanan sejak fase perancangan sistem.",
+    roles: [
+      {
+        slug: "appsec-engineer",
+        title: "Application Security Engineer",
+        shortDescription: "Mengamankan aplikasi dari level kode hingga arsitektur.",
+        longDescription:
+          "Bertanggung jawab melakukan secure code review, threat modeling, dan memastikan best practice keamanan diterapkan sejak fase desain aplikasi.",
+        domain: "application",
+        level: "advanced",
+        skills: ["Threat modeling", "Secure code review", "OWASP Top 10"],
+        tools: ["Checkmarx", "Burp Suite", "Semgrep"],
+        certifications: ["CSSLP", "OSWE"],
+        responsibilities: [
+          "Melakukan threat modeling pada fitur baru",
+          "Code review berfokus keamanan",
+          "Menyusun secure coding guideline",
+        ],
+        careerPath: ["Developer", "AppSec Engineer", "Senior AppSec Engineer", "AppSec Architect"],
+        relatedRoles: ["devsecops-engineer", "appsec-liaison"],
       },
       {
-        id: "offensive-trainer",
-        title: "Offensive Security Trainer",
-        icon: "Flame",
-        description:
-          "Mengajarkan teknik dan mindset penyerang kepada tim developer melalui workshop hands-on dan capture-the-flag internal.",
-        skills: ["Curriculum Design", "CTF Design", "Public Speaking"],
-        certifications: ["OSCP", "CEH"],
-        tags: ["Training", "Enablement"],
+        slug: "devsecops-engineer",
+        title: "DevSecOps Engineer",
+        shortDescription: "Mengintegrasikan keamanan ke dalam pipeline CI/CD.",
+        longDescription:
+          "Mengotomasi security testing (SAST, DAST, dependency scanning) di dalam pipeline CI/CD sehingga kerentanan terdeteksi sedini mungkin sebelum production.",
+        domain: "cloud",
+        level: "advanced",
+        skills: ["CI/CD", "Container security", "Infrastructure as Code"],
+        tools: ["Jenkins", "GitLab CI", "Trivy", "Snyk"],
+        certifications: ["AWS Security Specialty", "CKS"],
+        responsibilities: [
+          "Membangun automated security scanning di pipeline",
+          "Mengelola container & cloud security posture",
+          "Kolaborasi dengan tim infra dan development",
+        ],
+        careerPath: ["DevOps Engineer", "DevSecOps Engineer", "Security Architect"],
+        relatedRoles: ["appsec-engineer", "cloud-security-engineer"],
       },
       {
-        id: "vulnerability-liaison",
-        title: "Vulnerability Liaison",
-        icon: "Link2",
-        description:
-          "Menerjemahkan hasil temuan pentest Red Team menjadi rekomendasi teknis yang actionable bagi tim pengembang.",
-        skills: ["Technical Translation", "Prioritization", "Stakeholder Management"],
-        certifications: ["CEH", "Security+"],
-        tags: ["Liaison", "Remediation"],
+        slug: "cloud-security-engineer",
+        title: "Cloud Security Engineer",
+        shortDescription: "Mengamankan infrastruktur cloud (AWS, Azure, GCP).",
+        longDescription:
+          "Fokus pada konfigurasi aman layanan cloud, manajemen identity & access, serta monitoring cloud security posture untuk mencegah misconfiguration.",
+        domain: "cloud",
+        level: "advanced",
+        skills: ["Cloud architecture", "IAM", "Network security cloud"],
+        tools: ["AWS Security Hub", "Azure Defender", "Prisma Cloud"],
+        certifications: ["AWS Security Specialty", "CCSP"],
+        responsibilities: [
+          "Mengaudit konfigurasi cloud secara berkala",
+          "Mengelola kebijakan IAM",
+          "Monitoring cloud security posture management (CSPM)",
+        ],
+        careerPath: ["Cloud Engineer", "Cloud Security Engineer", "Cloud Security Architect"],
+        relatedRoles: ["devsecops-engineer"],
+      },
+    ],
+  },
+  {
+    id: "white",
+    name: "White Team",
+    color: "#F8FAFC",
+    icon: "gavel",
+    mission: "Mengawasi, mengatur, dan menegakkan aturan main seluruh aktivitas keamanan organisasi.",
+    description:
+      "White Team berperan sebagai wasit dan pengatur strategi — mengelola kebijakan, kepatuhan (compliance), dan mengawasi jalannya latihan antar tim lain.",
+    roles: [
+      {
+        slug: "grc-analyst",
+        title: "GRC Analyst",
+        shortDescription: "Mengelola tata kelola, risiko, dan kepatuhan keamanan organisasi.",
+        longDescription:
+          "GRC (Governance, Risk, and Compliance) Analyst memastikan organisasi memenuhi standar regulasi (ISO 27001, GDPR, dsb) dan mengelola risiko keamanan secara sistematis.",
+        domain: "governance",
+        level: "intermediate",
+        skills: ["Risk assessment", "Compliance frameworks", "Audit"],
+        tools: ["GRC platforms", "Excel/Sheets", "ISO 27001 toolkit"],
+        certifications: ["CISA", "CRISC", "ISO 27001 Lead Auditor"],
+        responsibilities: [
+          "Melakukan risk assessment berkala",
+          "Menyusun dan memelihara kebijakan keamanan",
+          "Memastikan kepatuhan terhadap regulasi",
+        ],
+        careerPath: ["GRC Analyst", "Senior GRC Analyst", "GRC Manager", "CISO"],
+        relatedRoles: ["security-auditor"],
       },
       {
-        id: "bug-bounty-manager",
-        title: "Bug Bounty Program Manager",
-        icon: "Award",
-        description:
-          "Mengelola program bug bounty: menyaring laporan dari peneliti eksternal, memverifikasi validitas temuan, dan mengoordinasikan remediasi dengan tim developer.",
-        skills: ["Triage", "Vendor Management", "Vulnerability Scoring"],
-        certifications: ["OSCP", "CEH"],
-        tags: ["Bug Bounty", "Coordination"],
+        slug: "exercise-referee",
+        title: "Exercise Referee / Coordinator",
+        shortDescription: "Mengawasi jalannya latihan Red vs Blue Team agar sesuai aturan.",
+        longDescription:
+          "Bertindak sebagai wasit netral saat latihan simulasi serangan berlangsung — memastikan aturan keterlibatan (rules of engagement) dipatuhi dan mendokumentasikan hasil latihan.",
+        domain: "governance",
+        level: "intermediate",
+        skills: ["Project management", "Rules of engagement", "Reporting"],
+        tools: ["Documentation tools", "Project trackers"],
+        certifications: ["Security+", "PMP (opsional)"],
+        responsibilities: [
+          "Menyusun rules of engagement latihan",
+          "Mengawasi jalannya simulasi",
+          "Mendokumentasikan hasil dan pelajaran dari latihan",
+        ],
+        careerPath: ["Coordinator", "Senior Coordinator", "Program Manager"],
+        relatedRoles: ["grc-analyst"],
       },
     ],
   },
 ];
 
-export function getTeamById(id: string) {
-  return teamsData.find((team) => team.id === id);
-}
-
+/** Utility: ambil semua role dalam bentuk flat array, masing-masing menyimpan referensi teamId & teamColor */
 export function getAllRolesFlat() {
   return teamsData.flatMap((team) =>
-    team.roles.map((role) => ({ ...role, teamId: team.id, teamName: team.name }))
+    team.roles.map((role) => ({
+      ...role,
+      teamId: team.id,
+      teamName: team.name,
+      teamColor: team.color,
+    }))
   );
+}
+
+/** Utility: cari role berdasarkan slug */
+export function getRoleBySlug(slug) {
+  return getAllRolesFlat().find((role) => role.slug === slug) ?? null;
+}
+
+/** Utility: daftar domain unik untuk keperluan filter */
+export function getAllDomains() {
+  return [...new Set(getAllRolesFlat().map((r) => r.domain))];
 }
