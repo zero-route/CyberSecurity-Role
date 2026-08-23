@@ -1,19 +1,9 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
-
-/**
- * Merge Tailwind class names safely, resolving conflicting utility
- * classes (e.g. "p-2 p-4" -> "p-4") while allowing conditional classes.
- */
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-/**
- * Maps a team's color token to a consistent set of Tailwind utility
- * classes used across cards, badges, and tabs. Centralizing this avoids
- * repeating long conditional class strings in every component.
- */
 export function getTeamAccent(color: string) {
   const accents: Record<
     string,
