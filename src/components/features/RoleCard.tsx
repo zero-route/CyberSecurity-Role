@@ -1,6 +1,7 @@
+import * as LucideIcons from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { GraduationCap, Wrench } from "lucide-react";
 import type { CareerRole } from "@/types/team";
-import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { cn, getTeamAccent } from "@/lib/utils";
 
@@ -11,22 +12,28 @@ interface RoleCardProps {
 
 export function RoleCard({ role, teamColor }: RoleCardProps) {
   const accent = getTeamAccent(teamColor);
+  const RoleIcon =
+    (LucideIcons[role.icon as keyof typeof LucideIcons] as LucideIcon) ?? LucideIcons.Circle;
 
   return (
-    <Card
+    <div
       className={cn(
-        "group flex h-full flex-col gap-5 p-6 transition-all duration-300 hover:-translate-y-0.5 hover:bg-zinc-900/80",
+        "group flex h-full flex-col gap-4 rounded-xl border border-zinc-800/70 bg-zinc-950/50 p-5 transition-all duration-300 hover:-translate-y-0.5 hover:bg-zinc-950/80",
         accent.borderHover
       )}
     >
-      <div className="flex items-start justify-between gap-3">
-        <h3 className="font-display text-base font-semibold leading-snug text-zinc-100">
+      <div className="flex items-start gap-3">
+        <div
+          className={cn(
+            "flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border bg-zinc-900",
+            accent.border
+          )}
+        >
+          <RoleIcon className={cn("h-4 w-4", accent.text)} strokeWidth={2} />
+        </div>
+        <h3 className="pt-1.5 font-display text-base font-semibold leading-snug text-zinc-100">
           {role.title}
         </h3>
-        <span
-          className={cn("mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full", accent.dot)}
-          aria-hidden="true"
-        />
       </div>
 
       <p className="text-sm leading-relaxed text-zinc-400">{role.description}</p>
@@ -60,6 +67,6 @@ export function RoleCard({ role, teamColor }: RoleCardProps) {
           </div>
         </div>
       </div>
-    </Card>
+    </div>
   );
 }
