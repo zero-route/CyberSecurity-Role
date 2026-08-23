@@ -8,32 +8,20 @@
   }
 
   body {
-    @apply bg-zinc-950 text-zinc-100 antialiased selection:bg-zinc-800 selection:text-zinc-100;
+    @apply bg-black text-zinc-100 antialiased selection:bg-cyan-900 selection:text-cyan-100;
   }
 
-  /* Custom Slim Scrollbar */
+  /* Scrollbar ala Cyber UI */
   ::-webkit-scrollbar {
     height: 4px;
     width: 4px;
   }
 
   ::-webkit-scrollbar-track {
-    background: transparent;
+    background: #000;
   }
 
   ::-webkit-scrollbar-thumb {
     @apply rounded-full bg-zinc-800 hover:bg-zinc-700;
-  }
-
-  /* Accessibility for Reduced Motion */
-  @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-      scroll-behavior: auto !important;
-    }
   }
 }
