@@ -1,10 +1,5 @@
 import type { CyberTeam } from "@/types/team";
 
-/**
- * Master dataset for the Cyber Security Spectrum.
- * Kept separate from UI components so content can be edited
- * without touching any rendering logic.
- */
 export const teamsData: CyberTeam[] = [
   {
     id: "white",
