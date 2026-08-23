@@ -39,8 +39,6 @@ export default function Home() {
     });
   }, [team, query]);
 
-  // When searching, surface matches across every team, not just the active tab,
-  // so the search bar behaves like a global instant search.
   const globalMatches = useMemo(() => {
     const q = query.trim().toLowerCase();
     if (!q) return null;
@@ -67,7 +65,7 @@ export default function Home() {
         <Header />
 
         {/* Hero */}
-        <section className="border-b border-zinc-900 py-14 sm:py-20">
+        <section className="pb-4 pt-14 sm:pb-6 sm:pt-20">
           <Container>
             <div className="mx-auto max-w-3xl text-center">
               <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-800 bg-zinc-900/60 px-3 py-1 text-xs font-medium text-zinc-400">
@@ -87,8 +85,8 @@ export default function Home() {
         </section>
 
         {/* Controls: search + tabs */}
-        <section id="spectrum" className="py-8 sm:py-10">
-          <Container className="space-y-6">
+        <section id="spectrum" className="pt-10 sm:pt-14">
+          <Container className="space-y-5">
             <SearchBar value={query} onChange={setQuery} />
             {!isSearching && <TeamSelector activeTeam={activeTeam} onSelect={setActiveTeam} />}
           </Container>
@@ -96,17 +94,17 @@ export default function Home() {
 
         {/* Team mission banner (hidden while actively searching globally) */}
         {!isSearching && (
-          <section>
+          <section className="pt-8 sm:pt-10">
             <Container>
               <div
                 className={cn(
-                  "flex flex-col gap-4 rounded-2xl border bg-zinc-900/30 p-6 sm:flex-row sm:items-center",
+                  "flex flex-col gap-5 rounded-2xl border bg-zinc-900/50 p-6 shadow-glow-sm sm:flex-row sm:items-center sm:p-7",
                   accent.border
                 )}
               >
                 <div
                   className={cn(
-                    "flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border bg-zinc-950",
+                    "flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border bg-zinc-950",
                     accent.border
                   )}
                 >
@@ -121,7 +119,7 @@ export default function Home() {
                       {team.tagline}
                     </span>
                   </div>
-                  <p className="mt-1.5 max-w-2xl text-sm leading-relaxed text-zinc-400">
+                  <p className="mt-2 max-w-2xl text-sm leading-relaxed text-zinc-400">
                     {team.mission}
                   </p>
                 </div>
@@ -131,7 +129,7 @@ export default function Home() {
         )}
 
         {/* Role grid */}
-        <section id="roles" className="py-10 sm:py-14">
+        <section id="roles" className="pb-20 pt-10 sm:pb-24 sm:pt-14">
           <Container>
             {isSearching ? (
               <>
@@ -140,7 +138,7 @@ export default function Home() {
                   <span className="text-zinc-300">&ldquo;{query}&rdquo;</span>
                 </p>
                 {globalMatches && globalMatches.length > 0 ? (
-                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                  <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
                     {globalMatches.map(({ role, team: matchTeam }) => (
                       <RoleCard key={role.id} role={role} teamColor={matchTeam.color} />
                     ))}
@@ -150,7 +148,7 @@ export default function Home() {
                 )}
               </>
             ) : filteredRoles.length > 0 ? (
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
                 {filteredRoles.map((role) => (
                   <RoleCard key={role.id} role={role} teamColor={team.color} />
                 ))}
