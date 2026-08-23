@@ -141,59 +141,58 @@ export default function Home() {
       )}
 
       {/* Main Structure Section (Sama persis kayak screenshot referensi) */}
-      {!isSearching && (
-        <section id="roles" className="py-10">
-          <Container>
-            <div className="mb-8">
-              <p className="font-mono text-xs uppercase tracking-widest text-cyan-500">// STRUKTUR TIM</p>
-              <h2 className="mt-1 font-display text-2xl font-bold text-white">Tim & Divisi Cyber Security</h2>
-              <p className="text-xs text-zinc-400 mt-1">Setiap tim memiliki peran unik — dari menyerang, mempertahankan, mengelola, hingga menumbuhkan budaya keamanan.</p>
+{/* Struktur Tim */}
+{!isSearching && (
+  <section id="roles" className="py-10">
+    <Container className="px-3 sm:px-6">
+      <div className="mb-8">
+        <p className="font-mono text-xs uppercase tracking-widest text-cyan-500">// STRUKTUR TIM</p>
+        <h2 className="mt-1 font-display text-2xl font-bold text-white">Tim & Divisi Cyber Security</h2>
+        <p className="text-xs text-zinc-400 mt-1">
+          Setiap tim memiliki peran unik — dari menyerang, mempertahankan, mengelola, hingga menumbuhkan budaya keamanan.
+        </p>
+      </div>
+
+      <div className="space-y-10">
+        {teamsData.map((team) => {
+          const style = teamContainerStyles[team.color] || teamContainerStyles.white;
+
+          return (
+            <div
+              key={team.id}
+              id={`team-${team.id}`}
+              className={cn(
+                "rounded-2xl border p-4 sm:p-6 transition-all",
+                style.frameBg,
+                style.border
+              )}
+            >
+              {/* Header Tim dengan Dot Glowing */}
+              <div className="flex items-center gap-3 mb-2">
+                <div className={cn("h-3.5 w-3.5 rounded-full shrink-0", style.dotBg, style.glow)} />
+                <h3 className={cn("font-display text-lg sm:text-xl font-extrabold uppercase tracking-wide", style.text)}>
+                  {team.name}
+                </h3>
+              </div>
+
+              <p className="font-mono text-[11px] text-zinc-400 mb-6 pl-6 leading-relaxed">
+                // {team.tagline} — {team.mission}
+              </p>
+
+              {/* PERBAIKAN GAP & PADDING CARD DI SINI */}
+              <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                {team.roles.map((role) => (
+                  <RoleCard key={role.id} role={role} teamColor={team.color} />
+                ))}
+              </div>
             </div>
+          );
+        })}
+      </div>
+    </Container>
+  </section>
+)}
 
-            <div className="space-y-8">
-              {teamsData.map((team) => {
-                const style = teamContainerStyles[team.color] || teamContainerStyles.white;
-
-                return (
-                  <div
-                    key={team.id}
-                    id={`team-${team.id}`}
-                    className={cn(
-                      "rounded-2xl border p-5 sm:p-8 transition-all",
-                      style.frameBg,
-                      style.border
-                    )}
-                  >
-                    {/* Header Tim dengan Dot Glowing */}
-                    <div className="flex items-center gap-3 mb-2">
-                      <div className={cn("h-4 w-4 rounded-full shrink-0", style.dotBg, style.glow)} />
-                      <h3 className={cn("font-display text-xl sm:text-2xl font-extrabold uppercase tracking-wide", style.text)}>
-                        {team.name}
-                      </h3>
-                    </div>
-
-                    <p className="font-mono text-xs text-zinc-400 mb-6 pl-7">
-                      // {team.tagline} — {team.mission}
-                    </p>
-
-                    {/* Grid Role Cards */}
-                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                      {team.roles.map((role) => (
-                        <RoleCard key={role.id} role={role} teamColor={team.color} />
-                      ))}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </Container>
-        </section>
-      )}
-
-      <Footer />
-    </div>
-  );
-}
 
 function EmptyState({ query }: { query: string }) {
   return (
