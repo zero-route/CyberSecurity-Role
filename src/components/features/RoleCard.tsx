@@ -15,7 +15,7 @@ export function RoleCard({ role, teamColor }: RoleCardProps) {
   return (
     <Card
       className={cn(
-        "group flex h-full flex-col gap-4 p-5 transition-all duration-300 hover:-translate-y-0.5 hover:bg-zinc-900/70 hover:shadow-glow-sm",
+        "group flex h-full flex-col gap-5 p-6 transition-all duration-300 hover:-translate-y-0.5 hover:bg-zinc-900/80",
         accent.borderHover
       )}
     >
@@ -31,7 +31,7 @@ export function RoleCard({ role, teamColor }: RoleCardProps) {
 
       <p className="text-sm leading-relaxed text-zinc-400">{role.description}</p>
 
-      <div className="mt-auto space-y-3 pt-2">
+      <div className="mt-auto space-y-4 pt-1">
         <div>
           <div className="mb-1.5 flex items-center gap-1.5 text-xs font-medium uppercase tracking-wide text-zinc-500">
             <Wrench className="h-3.5 w-3.5" />
