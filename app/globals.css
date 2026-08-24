@@ -2,26 +2,139 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  html {
-    scroll-behavior: smooth;
-  }
+:root {
+  --bg-base: #06070a;
+  --bg-surface: #0d0f14;
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --text-primary: #f4f5f7;
+  --text-secondary: #9ca3af;
+}
 
-  body {
-    @apply bg-black text-zinc-100 antialiased selection:bg-cyan-900 selection:text-cyan-100;
-  }
+* {
+  box-sizing: border-box;
+}
 
-  /* Scrollbar ala Cyber UI */
-  ::-webkit-scrollbar {
-    height: 4px;
-    width: 4px;
-  }
+html,
+body {
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  scroll-behavior: smooth;
+}
 
-  ::-webkit-scrollbar-track {
-    background: #000;
-  }
+/* ===== Background blur grid (halus, bukan brutal) ===== */
+.bg-grid {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
 
-  ::-webkit-scrollbar-thumb {
-    @apply rounded-full bg-zinc-800 hover:bg-zinc-700;
+/* ===== Animated blob background ===== */
+.blob-container {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  background-color: var(--bg-base);
+}
+
+.blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  opacity: 0.35;
+  will-change: transform;
+}
+
+.blob-1 {
+  width: 420px;
+  height: 420px;
+  background: #ef4444;
+  top: 5%;
+  left: 8%;
+  animation: float-a 26s ease-in-out infinite;
+}
+
+.blob-2 {
+  width: 380px;
+  height: 380px;
+  background: #3b82f6;
+  top: 40%;
+  right: 5%;
+  animation: float-b 32s ease-in-out infinite;
+}
+
+.blob-3 {
+  width: 340px;
+  height: 340px;
+  background: #a855f7;
+  bottom: 8%;
+  left: 20%;
+  animation: float-c 30s ease-in-out infinite;
+}
+
+.blob-4 {
+  width: 300px;
+  height: 300px;
+  background: #22c55e;
+  top: 65%;
+  left: 55%;
+  animation: float-a 24s ease-in-out infinite reverse;
+}
+
+.blob-5 {
+  width: 260px;
+  height: 260px;
+  background: #eab308;
+  top: 15%;
+  right: 30%;
+  animation: float-b 28s ease-in-out infinite reverse;
+}
+
+@keyframes float-a {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(60px, 40px) scale(1.08); }
+  50% { transform: translate(-30px, 80px) scale(0.95); }
+  75% { transform: translate(-70px, -20px) scale(1.05); }
+}
+
+@keyframes float-b {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(-50px, 60px) scale(1.1); }
+  66% { transform: translate(40px, -50px) scale(0.9); }
+}
+
+@keyframes float-c {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  30% { transform: translate(50px, -40px) scale(1.05); }
+  60% { transform: translate(-40px, -60px) scale(0.92); }
+  85% { transform: translate(30px, 50px) scale(1.08); }
+}
+
+/* Reduce motion untuk aksesibilitas */
+@media (prefers-reduced-motion: reduce) {
+  .blob {
+    animation: none !important;
   }
+}
+
+/* ===== Neon soft glow (dikurangi dari versi brutal) ===== */
+.neon-text {
+  text-shadow: 0 0 12px currentColor, 0 0 24px rgba(255, 255, 255, 0.08);
+}
+
+.neon-border {
+  box-shadow: 0 0 0 1px var(--tw-shadow-color, transparent), 0 0 20px -8px var(--tw-shadow-color, transparent);
+}
+
+/* Scrollbar tipis biar konsisten dark mode */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-base);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
 }
