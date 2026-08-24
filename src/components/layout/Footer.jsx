@@ -1,14 +1,12 @@
-import { Container } from "@/components/layout/Container";
+import Container from "./Container";
 
-export function Footer() {
+export default function Footer() {
   return (
-    <footer className="border-t border-zinc-900 py-10">
-      <Container className="flex flex-col items-center justify-between gap-4 text-sm text-zinc-500 sm:flex-row">
-        <p>
-          &copy; {new Date().getFullYear()} Cyber Security Roles &amp; Spectrum. Dibuat untuk
-          tujuan edukasi.
+    <footer className="mt-20 border-t border-white/5 py-8">
+      <Container>
+        <p className="text-center text-xs tracking-wide text-neutral-500">
+          // CYBER SECURITY — TIM & DIVISI &nbsp;|&nbsp; Dibuat untuk edukasi &nbsp;|&nbsp; Stay Secure 🛡️
         </p>
-        <p className="text-zinc-600">Dibangun dengan Next.js, TypeScript &amp; Tailwind CSS.</p>
       </Container>
     </footer>
   );
