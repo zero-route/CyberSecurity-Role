@@ -1,41 +1,23 @@
-import type { Metadata } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+import AnimatedBackground from "@/components/layout/AnimatedBackground";
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-heading",
-  display: "swap",
-});
-
-export const metadata: Metadata = {
-  title: "Cyber Security Roles & Spectrum",
+export const metadata = {
+  title: "Cyber Security — Tim & Divisi",
   description:
-    "Panduan interaktif memahami divisi tim cyber security — White, Red, Blue, Purple, Yellow, Green, dan Orange Team — beserta profesi di dalamnya.",
-  keywords: [
-    "cyber security",
-    "red team",
-    "blue team",
-    "purple team",
-    "security careers",
-    "cyber security roles",
-  ],
+    "Penjelasan lengkap tentang cyber security: fungsi, peran, dan keahlian di 7 tim warna (Red, Blue, Green, Purple, Orange, Yellow, White).",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }) {
   return (
-    <html lang="id" className={`${inter.variable} ${spaceGrotesk.variable}`}>
-      <body className="font-sans">{children}</body>
+    <html lang="id">
+      <body className="min-h-screen antialiased">
+        <AnimatedBackground />
+        <Header />
+        <main>{children}</main>
+        <Footer />
+      </body>
     </html>
   );
 }
