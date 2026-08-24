@@ -1,19 +1,27 @@
-import { cn } from "@/lib/utils";
+import { cn, hexToRgba } from "@/lib/utils";
 
-interface CardProps {
-  children: React.ReactNode;
-  className?: string;
-}
+/**
+ * Card dasar dengan border tipis + soft glow sesuai `color` (hex).
+ * Dipakai sebagai pembungkus section tim maupun RoleCard individual.
+ */
+export default function Card({ children, color, className, as: Tag = "div" }) {
+  const style = color
+    ? {
+        borderColor: hexToRgba(color, 0.35),
+        boxShadow: `0 0 32px -18px ${hexToRgba(color, 0.6)}`,
+        backgroundColor: hexToRgba(color, 0.05),
+      }
+    : undefined;
 
-export function Card({ children, className }: CardProps) {
   return (
-    <div
+    <Tag
+      style={style}
       className={cn(
-        "rounded-xl border border-zinc-800/80 bg-zinc-900/40 p-6 backdrop-blur-md transition-all",
+        "rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-sm transition",
         className
       )}
     >
       {children}
-    </div>
+    </Tag>
   );
 }
