@@ -31,7 +31,7 @@ export default function HomePage() {
   return (
     <>
       {/* ===== HERO ===== */}
-      <Container className="pt-16 pb-10 text-center">
+      <Container className="pb-14 pt-16 text-center sm:pt-20">
         <p className="mb-4 text-xs font-semibold tracking-[0.2em] text-cyan-400/80">
           {heroData.eyebrow}
         </p>
@@ -39,13 +39,14 @@ export default function HomePage() {
           <span className="text-neutral-50">{heroData.titlePrefix}</span>
           <span className="text-cyan-400 neon-text">{heroData.titleHighlight}</span>
         </h1>
-        <p className="mx-auto max-w-xl text-sm leading-relaxed text-neutral-400 sm:text-base">
+        <p className="mx-auto mb-12 max-w-xl text-sm leading-relaxed text-neutral-400 sm:text-base">
           {heroData.description}
         </p>
 
-        <div className="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-4">
+        {/* Stats: flex row + wrap, TIDAK pakai grid supaya aman di semua kondisi */}
+        <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-6">
           {heroStats.map((stat) => (
-            <div key={stat.label}>
+            <div key={stat.label} className="min-w-[90px]">
               <p className="text-2xl font-bold text-cyan-400 sm:text-3xl">{stat.value}</p>
               <p className="mt-1 text-[10px] tracking-widest text-neutral-500">{stat.label}</p>
             </div>
@@ -54,21 +55,23 @@ export default function HomePage() {
       </Container>
 
       {/* ===== OVERVIEW ===== */}
-      <Container className="py-10">
-        <p className="mb-2 text-xs font-semibold tracking-[0.2em] text-cyan-400/80">
+      <Container className="py-14">
+        <p className="mb-3 text-xs font-semibold tracking-[0.2em] text-cyan-400/80">
           {overviewData.eyebrow}
         </p>
-        <h2 className="mb-2 text-2xl font-bold text-neutral-50 sm:text-3xl">{overviewData.title}</h2>
-        <p className="mb-8 text-sm text-neutral-400">{overviewData.subtitle}</p>
+        <h2 className="mb-3 text-2xl font-bold text-neutral-50 sm:text-3xl">
+          {overviewData.title}
+        </h2>
+        <p className="mb-10 text-sm text-neutral-400">{overviewData.subtitle}</p>
 
-        <div className="grid gap-4 sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           {overviewData.cards.map((card) => (
             <div
               key={card.title}
-              className="rounded-xl border border-white/10 bg-white/[0.02] p-5 backdrop-blur-sm"
+              className="rounded-xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur-sm"
             >
-              <h3 className="mb-2 flex items-center gap-2 text-sm font-semibold text-cyan-300">
-                <span>{card.icon}</span>
+              <h3 className="mb-3 flex items-center gap-2 text-sm font-semibold text-cyan-300">
+                <span className="text-lg">{card.icon}</span>
                 {card.title}
               </h3>
               <p className="text-sm leading-relaxed text-neutral-400">{card.description}</p>
@@ -78,14 +81,14 @@ export default function HomePage() {
       </Container>
 
       {/* ===== FILTER & SEARCH ===== */}
-      <Container className="py-10">
-        <p className="mb-2 text-xs font-semibold tracking-[0.2em] text-cyan-400/80">
+      <Container className="py-14">
+        <p className="mb-3 text-xs font-semibold tracking-[0.2em] text-cyan-400/80">
           {teamSectionIntro.eyebrow}
         </p>
-        <h2 className="mb-2 text-2xl font-bold text-neutral-50 sm:text-3xl">
+        <h2 className="mb-3 text-2xl font-bold text-neutral-50 sm:text-3xl">
           {teamSectionIntro.title}
         </h2>
-        <p className="mb-6 text-sm text-neutral-400">{teamSectionIntro.subtitle}</p>
+        <p className="mb-8 text-sm text-neutral-400">{teamSectionIntro.subtitle}</p>
 
         <div className="mb-6">
           <SearchBar value={query} onChange={setQuery} />
@@ -95,11 +98,11 @@ export default function HomePage() {
           <TeamSelector teams={teamsData} selectedTeams={selectedTeams} onToggle={toggleTeam} />
         </div>
 
-        <details className="mb-4 rounded-xl border border-white/10 bg-white/[0.02] p-4">
+        <details className="mb-4 rounded-xl border border-white/10 bg-white/[0.03] p-5">
           <summary className="cursor-pointer text-sm font-medium text-neutral-300">
             Filter lanjutan (domain & level)
           </summary>
-          <div className="mt-4">
+          <div className="mt-5">
             <FilterPanel
               selectedTeams={selectedTeams}
               selectedDomains={selectedDomains}
@@ -116,13 +119,13 @@ export default function HomePage() {
         </details>
       </Container>
 
-      {/* ===== HASIL FILTER (jika sedang memfilter) ===== */}
+      {/* ===== HASIL FILTER ===== */}
       {isFiltering && (
-        <Container className="pb-10">
-          <p className="mb-4 text-sm text-neutral-400">
+        <Container className="pb-16">
+          <p className="mb-5 text-sm text-neutral-400">
             Menampilkan {filteredRoles.length} role
           </p>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {filteredRoles.map((role) => (
               <RoleCard key={role.slug} role={role} color={role.teamColor} />
             ))}
@@ -130,20 +133,20 @@ export default function HomePage() {
         </Container>
       )}
 
-      {/* ===== DAFTAR TIM (tampilan default, dikelompokkan per tim) ===== */}
+      {/* ===== DAFTAR TIM (default) ===== */}
       {!isFiltering && (
-        <Container className="space-y-8 pb-16">
+        <Container className="space-y-10 pb-20">
           {teamsData.map((team) => (
             <section
               key={team.id}
-              className="rounded-2xl border p-6"
+              className="rounded-2xl border p-6 sm:p-8"
               style={{
                 borderColor: hexToRgba(team.color, 0.3),
                 backgroundColor: hexToRgba(team.color, 0.04),
                 boxShadow: `0 0 40px -22px ${hexToRgba(team.color, 0.7)}`,
               }}
             >
-              <div className="mb-6 flex items-center gap-3">
+              <div className="mb-7 flex items-center gap-3">
                 <span
                   className="h-8 w-8 shrink-0 rounded-full"
                   style={{
@@ -152,17 +155,16 @@ export default function HomePage() {
                   }}
                 />
                 <div>
-                  <h3
-                    className="text-xl font-bold tracking-wide"
-                    style={{ color: team.color }}
-                  >
+                  <h3 className="text-xl font-bold tracking-wide" style={{ color: team.color }}>
                     {team.name.toUpperCase()}
                   </h3>
-                  <p className="text-xs tracking-wide text-neutral-500">// {team.mission}</p>
+                  <p className="mt-0.5 text-xs tracking-wide text-neutral-500">
+                    // {team.mission}
+                  </p>
                 </div>
               </div>
 
-              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
                 {team.roles.map((role) => (
                   <RoleCard key={role.slug} role={role} color={team.color} />
                 ))}
